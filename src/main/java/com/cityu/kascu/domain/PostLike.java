@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -44,4 +45,14 @@ public class PostLike {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime modifiedAt;
+
+    @Builder
+    public PostLike(final Long id, final Member member, final Post post, final LocalDateTime createdAt,
+                    final LocalDateTime modifiedAt) {
+        this.id = id;
+        this.member = member;
+        this.post = post;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+    }
 }

@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -47,4 +48,15 @@ public class Comment {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime modifiedAt;
+
+    @Builder
+    public Comment(final Long id, final Post post, final Member member, final String content,
+                   final LocalDateTime createdAt, final LocalDateTime modifiedAt) {
+        this.id = id;
+        this.post = post;
+        this.member = member;
+        this.content = content;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+    }
 }

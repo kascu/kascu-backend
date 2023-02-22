@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -56,4 +57,19 @@ public class Post {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime modifiedAt;
+
+    @Builder
+    public Post(final Long id, final Board board, final Member member, final String title, final String content,
+                final String status, final int viewCount,
+                final LocalDateTime createdAt, final LocalDateTime modifiedAt) {
+        this.id = id;
+        this.board = board;
+        this.member = member;
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.viewCount = viewCount;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+    }
 }
