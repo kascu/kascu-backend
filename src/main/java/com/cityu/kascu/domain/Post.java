@@ -11,10 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -24,6 +22,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@AllArgsConstructor
+@Builder
 public class Post {
 
     @Id
@@ -58,18 +58,4 @@ public class Post {
     @Column(name = "updated_at")
     private LocalDateTime modifiedAt;
 
-    @Builder
-    public Post(final Long id, final Board board, final Member member, final String title, final String content,
-                final String status, final int viewCount,
-                final LocalDateTime createdAt, final LocalDateTime modifiedAt) {
-        this.id = id;
-        this.board = board;
-        this.member = member;
-        this.title = title;
-        this.content = content;
-        this.status = status;
-        this.viewCount = viewCount;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
 }

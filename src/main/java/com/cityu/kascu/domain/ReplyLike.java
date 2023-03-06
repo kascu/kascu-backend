@@ -11,10 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -24,6 +22,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@AllArgsConstructor
+@Builder
 public class ReplyLike {
 
     @Id
@@ -46,13 +46,4 @@ public class ReplyLike {
     @Column(name = "updated_at")
     private LocalDateTime modifiedAt;
 
-    @Builder
-    public ReplyLike(final Long id, final Reply reply, final Member member, final LocalDateTime createdAt,
-                     final LocalDateTime modifiedAt) {
-        this.id = id;
-        this.reply = reply;
-        this.member = member;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
 }
