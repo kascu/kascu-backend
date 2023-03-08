@@ -10,11 +10,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 import java.time.LocalDateTime;
+
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -24,6 +28,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@AllArgsConstructor
+@Builder
 public class Comment {
 
     @Id
@@ -49,14 +55,4 @@ public class Comment {
     @Column(name = "updated_at")
     private LocalDateTime modifiedAt;
 
-    @Builder
-    public Comment(final Long id, final Post post, final Member member, final String content,
-                   final LocalDateTime createdAt, final LocalDateTime modifiedAt) {
-        this.id = id;
-        this.post = post;
-        this.member = member;
-        this.content = content;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
 }

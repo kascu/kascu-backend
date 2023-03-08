@@ -7,11 +7,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
 import java.time.LocalDateTime;
+
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,6 +25,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@AllArgsConstructor
+@Builder
 public class Member {
 
     @Id
@@ -47,16 +53,4 @@ public class Member {
     @Column(name = "updated_at")
     private LocalDateTime modifiedAt;
 
-    @Builder
-    public Member(final Long id, final String email, final String nickname, final String status, final String role,
-                  final LocalDateTime createdAt,
-                  final LocalDateTime modifiedAt) {
-        this.id = id;
-        this.email = email;
-        this.nickname = nickname;
-        this.status = status;
-        this.role = role;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
-    }
 }
